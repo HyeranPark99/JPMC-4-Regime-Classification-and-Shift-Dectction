@@ -4,6 +4,8 @@ A near-realtime financial dashboard that classifies market regimes for S&P 500 a
 
 Originally built as a static Jupyter notebook (`SP_500_with_Taylor_rule_(inflation_and_GDP)_RNN_Final_.ipynb`). Modernized into a fully modular Streamlit application with live data feeds and persistent models.
 
+![img](image.png)
+
 ---
 
 ## What It Does
@@ -85,11 +87,6 @@ fredapi (T10YIE, GDP)       ──►       │
 ## Quick Start
 
 ### 1. Clone the repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-cd YOUR_REPO
-```
 
 ### 2. Create a virtual environment
 
