@@ -1,0 +1,34 @@
+# Secrets
+.env
+
+# Runtime data (auto-generated, re-fetched on startup)
+data/cache/
+
+# Trained model binaries (auto-retrained on first run)
+models/saved/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+
+# Streamlit secrets (if using Streamlit Cloud later)
+.streamlit/secrets.toml
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
