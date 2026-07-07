@@ -25,7 +25,6 @@ def render_regime_metrics(model, asset_label: str):
         st.warning("No model available for this selection.")
         return
     summary = model.summary_dict()
-    labels = model.get_regime_labels()
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Current Regime", summary.get("label", "—"))
     c2.metric("Regime Probability", f"{summary.get('probability', 0):.0%}")

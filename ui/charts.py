@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from config import REGIME_COLORS, REGIME_LABELS, REGIME_LINE_COLORS
+from config import REGIME_COLORS, REGIME_LINE_COLORS
 
 
 def regime_overlay_chart(
