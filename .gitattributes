@@ -1,0 +1,3 @@
+# Exclude notebooks from GitHub language statistics so the language bar
+# reflects the application code (Python), not the legacy research notebook.
+*.ipynb linguist-documentation

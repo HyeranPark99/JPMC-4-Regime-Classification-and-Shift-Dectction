@@ -28,7 +28,6 @@ class LSTMPredictor:
         self.history = {}
 
     def _build_model(self):
-        import tensorflow as tf
         from tensorflow.keras.layers import LSTM, Dense, Dropout
         from tensorflow.keras.models import Sequential
 

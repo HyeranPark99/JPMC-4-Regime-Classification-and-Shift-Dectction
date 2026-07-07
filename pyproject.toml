@@ -1,0 +1,17 @@
+[tool.ruff]
+line-length = 120
+exclude = ["notebooks"]
+
+[tool.ruff.lint]
+# Correctness-focused rules: pyflakes (F) + pycodestyle errors (E)
+select = ["E", "F"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# Streamlit requires st.set_page_config() to run before any other st call,
+# so app.py imports UI modules after it by design.
+"app.py" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

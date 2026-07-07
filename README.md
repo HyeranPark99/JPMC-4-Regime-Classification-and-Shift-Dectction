@@ -1,8 +1,10 @@
 # Market Regime Classification & Shift Detection Dashboard
 
+[![CI](https://github.com/HyeranPark99/JPMC-4-Regime-Classification-and-Shift-Detection/actions/workflows/ci.yml/badge.svg)](https://github.com/HyeranPark99/JPMC-4-Regime-Classification-and-Shift-Detection/actions/workflows/ci.yml)
+
 A near-realtime financial dashboard that classifies market regimes for S&P 500 and Bitcoin using Markov Switching models, LSTM price forecasting, and AI-generated commentary via a local LLM — all at zero ongoing cost.
 
-Originally built as a static Jupyter notebook (`SP_500_with_Taylor_rule_(inflation_and_GDP)_RNN_Final_.ipynb`). Modernized into a fully modular Streamlit application with live data feeds and persistent models.
+Originally built as a static Jupyter notebook for the JPMorgan Chase challenge in the Break Through Tech AI program (now preserved in [`notebooks/`](notebooks/)). Rebuilt in 2026 into a fully modular Streamlit application with live data feeds, persistent models, unit tests, and CI.
 
 ![img](image.png)
 
@@ -60,8 +62,15 @@ fredapi (T10YIE, GDP)       ──►       │
 ```
 ├── app.py                      # Streamlit entry point
 ├── config.py                   # All constants (paths, model params, colors, limits)
-├── requirements.txt
+├── requirements.txt            # Runtime dependencies
+├── requirements-dev.txt        # Test/lint dependencies (CI installs only these)
+├── pyproject.toml              # Ruff + pytest configuration
 ├── .env.example                # Copy to .env and add your FRED API key
+│
+├── .github/workflows/ci.yml   # CI: ruff lint + pytest on every push/PR
+├── tests/
+│   └── test_preprocessor.py    # Unit tests for the data pipeline (no network)
+├── notebooks/                  # Original 2022 research notebook (legacy)
 │
 ├── data/
 │   ├── fetcher.py              # yfinance + FRED API, TTL-based CSV cache
@@ -195,6 +204,20 @@ Scaler is fitted on training data only (fixes data leakage present in the origin
 | Scaler data leakage | Scaler re-fitted on each split | Fitted on train only, transform applied to val/test |
 | No model persistence | Retrains from scratch every run | mtime-based 7-day cache |
 | GDP interpolation | Broke when FRED uses quarter-start dates | Union-index interpolation fix |
+
+---
+
+## Development
+
+```bash
+pip install -r requirements-dev.txt
+ruff check .        # lint
+pytest tests/ -v    # unit tests (pure functions, no network/API keys needed)
+```
+
+CI runs both on every push and pull request (see `.github/workflows/ci.yml`).
+The test suite includes a regression test for the GDP quarter-start
+interpolation bug listed above, so it can't silently reappear.
 
 ---
 
